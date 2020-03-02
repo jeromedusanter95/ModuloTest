@@ -1,5 +1,4 @@
-
-
+package LightsProblem
 
 object Problem {
     fun solve(speedLimit: Int, lights: List<Light>): Int {

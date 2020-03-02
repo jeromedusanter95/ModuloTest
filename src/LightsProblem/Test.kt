@@ -1,3 +1,5 @@
+package LightsProblem
+
 import org.junit.Test
 import kotlin.test.assertEquals
 

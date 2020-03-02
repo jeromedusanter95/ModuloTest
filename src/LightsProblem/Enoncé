@@ -10,9 +10,9 @@ Votre véhicule entre directement dans la zone à la vitesse programmée sur le 
 
 INPUTS DE LA FONCTION SOLVE :
 - speedLimit : Un entier pour la vitesse maximale autorisée sur la portion de route (en km/h).
-- lights : Une liste de "Light" représentant tous les feux présents sur la portion de route
+- lights : Une liste de "LightsProblem.Light" représentant tous les feux présents sur la portion de route
 
-Représentation de la class Light :
+Représentation de la class LightsProblem.Light :
 - Un entier "distanceInMeter" représentant la distance du feu par rapport au point de départ (en mètre).
 - Un entier "durationInSecond" représentant la durée du feu sur chaque couleur (en seconde).
 
@@ -30,5 +30,5 @@ CONTRAINTES
 1 ≤ durationInSeconds ≤ 9999
 
 EXEMPLE
-Input :  speedLimit = 50    lights = listOf(Light(200, 15))
+Input :  speedLimit = 50    lights = listOf(LightsProblem.Light(200, 15))
 Output :  answer = 50
