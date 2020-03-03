@@ -1,6 +1,6 @@
 package PokerProblem
 
 data class Pot(
-    var id: Int,
-    var stack: Int
+    var stack: Int,
+    var players: List<Player>
 )
