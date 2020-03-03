@@ -54,11 +54,36 @@ object Problem {
                     potentialWinners.filter { it.stackBetCurrentTurn > 0 }.toMutableList()
             }
         } else {
-            val stackPot = players.sumBy { it.stackBetCurrentTurn }
-            pots.add(Pot(stackPot, potentialWinners))
+            val minStackBet = players.minBy {
+                it.stackBetCurrentTurn
+            }?.stackBetCurrentTurn
+
+            minStackBet?.let { min ->
+                var stackPot = 0
+                players.forEach {
+                    if (it.stackBetCurrentTurn < min) {
+                        stackPot += it.stackBetCurrentTurn
+                        it.stackBetCurrentTurn = 0
+                    } else {
+                        stackPot += min
+                        it.stackBetCurrentTurn -= min
+                    }
+                }
+                pots.add(Pot(stackPot, potentialWinners))
+            }
         }
+
+        returnMoneyToPlayers(players)
+
         return pots
     }
+
+    private fun returnMoneyToPlayers(players: List<Player>) {
+        players.filter { it.stackBetCurrentTurn > 0 }.forEach {
+            it.stack += it.stackBetCurrentTurn
+        }
+    }
+
 
     private fun getWinnersForOnePot(players: List<Player>): List<Player> {
         return players.filter {
@@ -73,7 +98,8 @@ object Problem {
     private fun resetPlayers(players: List<Player>) {
         players.forEach { player ->
             player.apply {
-                statePlayer = if (this.stack == 0) StatePlayer.ELIMINATED else StatePlayer.PLAYING
+                statePlayer =
+                    if (this.stack == 0) StatePlayer.ELIMINATED else StatePlayer.PLAYING
                 stackBetCurrentTurn = 0
                 handCurrentTurn = -1
             }
