@@ -22,13 +22,13 @@ object Problem {
 
     private fun getBestHand(players: List<Player>): Int {
         return players.filter {
-            it.statePlayer != StatePlayer.FOLDED && it.statePlayer != StatePlayer.ELIMINATED
+            it.state != State.FOLDED && it.state != State.ELIMINATED
         }.minBy { it.handCurrentTurn }?.handCurrentTurn!!
     }
 
     private fun createAllPots(players: List<Player>): List<Pot> {
         var potentialWinners = players.filter {
-            it.statePlayer != StatePlayer.FOLDED && it.statePlayer != StatePlayer.ELIMINATED
+            it.state != State.FOLDED && it.state != State.ELIMINATED
         }.toMutableList()
         val pots = mutableListOf<Pot>()
         if (potentialWinners.size > 1) {
@@ -87,7 +87,7 @@ object Problem {
 
     private fun getWinnersForOnePot(players: List<Player>): List<Player> {
         return players.filter {
-            it.statePlayer != StatePlayer.FOLDED && it.statePlayer != StatePlayer.ELIMINATED
+            it.state != State.FOLDED && it.state != State.ELIMINATED
         }.filter { it.handCurrentTurn == getBestHand(players) }
     }
 
@@ -98,8 +98,8 @@ object Problem {
     private fun resetPlayers(players: List<Player>) {
         players.forEach { player ->
             player.apply {
-                statePlayer =
-                    if (this.stack == 0) StatePlayer.ELIMINATED else StatePlayer.PLAYING
+                state =
+                    if (this.stack == 0) State.ELIMINATED else State.PLAYING
                 stackBetCurrentTurn = 0
                 handCurrentTurn = -1
             }
