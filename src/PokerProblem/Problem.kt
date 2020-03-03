@@ -33,11 +33,13 @@ object Problem {
         val pots = mutableListOf<Pot>()
         if (potentialWinners.size > 1) {
             while (!isAllPotCreated(potentialWinners)) {
-                val minStackBet =
-                    potentialWinners.minBy { it.stackBetCurrentTurn }?.stackBetCurrentTurn
+                val minStackBet = potentialWinners.minBy {
+                    it.stackBetCurrentTurn
+                }?.stackBetCurrentTurn
+
                 minStackBet?.let { min ->
                     var stackPot = 0
-                    potentialWinners.forEach {
+                    players.filter { it.stackBetCurrentTurn > 0 }.forEach {
                         if (it.stackBetCurrentTurn < min) {
                             stackPot += it.stackBetCurrentTurn
                             it.stackBetCurrentTurn = 0

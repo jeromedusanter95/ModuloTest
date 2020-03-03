@@ -230,4 +230,89 @@ class Test {
         assertEquals(outputs, Problem.solve(inputs))
     }
 
+    // Test distribution of stack with several side pot
+    // Five players have respectively 100, 200, 300, 400, 500 dollars when the turn starts.
+    // Pre flop : Player 1 all_in, they all called
+    // Flop : Player 4 bet 200 dollars, player 2 all_in, player 3 fold, player 5 call
+    // Turn : Player 4 all_in Player 5 call
+    // First player has the best hand then player 2 then player 3....
+    @Test
+    fun test6() {
+        val inputs = listOf(
+            Player(
+                id = 1,
+                stack = 0,
+                stackBetCurrentTurn = 100,
+                handCurrentTurn = 1,
+                statePlayer = StatePlayer.ALL_IN
+            ),
+            Player(
+                id = 2,
+                stack = 0,
+                stackBetCurrentTurn = 200,
+                handCurrentTurn = 2,
+                statePlayer = StatePlayer.ALL_IN
+            ),
+            Player(
+                id = 3,
+                stack = 200,
+                stackBetCurrentTurn = 100,
+                handCurrentTurn = 3,
+                statePlayer = StatePlayer.FOLDED
+            ),
+            Player(
+                id = 4,
+                stack = 0,
+                stackBetCurrentTurn = 400,
+                handCurrentTurn = 4,
+                statePlayer = StatePlayer.ALL_IN
+            ),
+            Player(
+                id = 5,
+                stack = 100,
+                stackBetCurrentTurn = 400,
+                handCurrentTurn = 5,
+                statePlayer = StatePlayer.PLAYING
+            )
+        )
+        val outputs = listOf(
+            Player(
+                id = 1,
+                stack = 500,
+                stackBetCurrentTurn = 0,
+                handCurrentTurn = -1,
+                statePlayer = StatePlayer.PLAYING
+            ),
+            Player(
+                id = 2,
+                stack = 300,
+                stackBetCurrentTurn = 0,
+                handCurrentTurn = -1,
+                statePlayer = StatePlayer.PLAYING
+            ),
+            Player(
+                id = 3,
+                stack = 200,
+                stackBetCurrentTurn = 0,
+                handCurrentTurn = -1,
+                statePlayer = StatePlayer.PLAYING
+            ),
+            Player(
+                id = 4,
+                stack = 400,
+                stackBetCurrentTurn = 0,
+                handCurrentTurn = -1,
+                statePlayer = StatePlayer.PLAYING
+            ),
+            Player(
+                id = 5,
+                stack = 100,
+                stackBetCurrentTurn = 0,
+                handCurrentTurn = -1,
+                statePlayer = StatePlayer.PLAYING
+            )
+        )
+        assertEquals(outputs, Problem.solve(inputs))
+    }
+
 }
