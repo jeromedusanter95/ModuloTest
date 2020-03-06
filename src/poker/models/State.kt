@@ -1,4 +1,4 @@
-package poker
+package poker.models
 
 /**
  * enum class State

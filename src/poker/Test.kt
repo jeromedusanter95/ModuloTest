@@ -1,6 +1,8 @@
 package poker
 
 import org.junit.Test
+import poker.models.Player
+import poker.models.State
 import kotlin.test.assertEquals
 
 /** CAREFUL DO NOT TOUCH THE TESTS !!!**/

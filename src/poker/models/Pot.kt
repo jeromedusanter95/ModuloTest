@@ -1,4 +1,6 @@
-package poker
+package poker.models
+
+import poker.models.Player
 
 /**
  * data class Pot
