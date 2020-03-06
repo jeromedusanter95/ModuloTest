@@ -1,4 +1,4 @@
-package PokerProblem
+package poker
 
 /**
  * enum class State

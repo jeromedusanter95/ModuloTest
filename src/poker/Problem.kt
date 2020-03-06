@@ -1,4 +1,4 @@
-package PokerProblem
+package poker
 
 object Problem {
     fun solve(players: List<Player>): List<Player> {

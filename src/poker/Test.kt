@@ -1,4 +1,4 @@
-package PokerProblem
+package poker
 
 import org.junit.Test
 import kotlin.test.assertEquals
